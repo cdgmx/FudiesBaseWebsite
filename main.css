@@ -28,3 +28,11 @@
  /*End Navigation*/
 
 
+ .flexbox-column-cont h1{
+     text-align: center;
+    
+ }
+
+ #main-text{
+     justify-content: center;
+ }
