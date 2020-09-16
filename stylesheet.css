@@ -1,0 +1,64 @@
+html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+    margin: 0;
+  }
+  
+  .flexbox-container {
+    height: 100vh;
+    }
+
+  .flexbox-column {
+    display: flex;
+    width: device-width;
+    padding: 50px;
+    background-color: yellow;
+    justify-content: center;
+
+  }
+
+  .flexbox-column2 {
+    display: flex;
+    width: device-width;
+    background-color: yellow;
+    justify-content: center;
+    flex-grow: 1;
+    flex-direction: column;
+    flex: 1
+
+  }
+
+
+  .flexbox-column .main {
+    justify-content: right;
+    flex-direction: column
+    
+  }
+  
+  @media (min-width: 768px) {
+    .flexbox-container {
+          display: flex;
+         
+         
+     }
+    .flexbox-column {
+      width: 100%;
+      background-color: #444;
+    
+    
+
+    }
+
+   
+
+  
+  }
+  
+
+  
+
+
+  
+  
