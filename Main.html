@@ -8,21 +8,34 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="main.css" />
         <link rel="stylesheet" href="stylesheet.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.js" type="text/javascript"></script>
+        <script src="https://bundle.run/css-scroll-snap-polyfill@0.1.2" type="text/javascript"></script>
+       
     </head>
 
     <body>
         
         <div class ="main">
-            <div class="navigation">
-                <ul>
-                    <li><a href="default.asp">Home</a></li>
-                    <li><a href="news.asp">News</a></li>
-                    <li><a href="contact.asp">Contact</a></li>
-                    <li><a href="about.asp">About</a></li>
-                </ul>
-            </div>
+          
+           
 
             <div class="content">
+                
+                <div class="navigation" id = "navigation">
+                    <ul>
+                        <li><a href="default.asp">Home</a></li>
+                        <li><a href="news.asp">News</a></li>
+                        <li><a href="contact.asp">Contact</a></li>
+                        <li><a href="about.asp">About</a></li>
+                    </ul>
+                </div>
+            
+                <section>
+                   
+                  
+
                 <div class="flexbox-container">
                     <div class= "flexbox-row-cont"  id = "main-view">
                         <div class="flexbox-column-cont" id="main-text"> 
@@ -31,40 +44,149 @@
                       
                     </div>
 
-                    <div class="wrap">
-                        <button onclick="prev()">&laquo;</button>
-                            
+                  
+                        
+                       
                                 <div class= "flexbox-row-cont" id = "bottom-items">
-                                    <div class="scroller">
-                                    <div class="flexbox-column-cont" id = "obj1"> 
-                                            <p>Main Page</p>        
-                                    </div>
-                                    <div class="flexbox-column-cont"> 
-                                        <p>Main Page</p>        
-                                    </div>
-                                    <div class="flexbox-column-cont"> 
-                                        <p>Main Page</p>        
-                                    </div>
-                                    <div class="flexbox-column-cont"> 
-                                        <p>Main Page</p>        
-                                    </div>
-                                    </div>
+                                    
+                                            <!--<div class="flexbox-column-cont" id = "obj1"> 
+                                                <p>Main Page</p>        
+                                            </div>
+                                           <div class="flexbox-column-cont"> 
+                                                <p>Main Page</p>        
+                                            </div>
+                                            <div class="flexbox-column-cont"> 
+                                                <p>Main Page</p>        
+                                            </div>
+                                            <div class="flexbox-column-cont"> 
+                                                <p>Main Page</p>        
+                                            </div>
+                                        -->
+
+
+                                        <div class="wrap">
+                                            <button onclick="prev()">&laquo;</button>
+                                          
+                                            <div class="scroller">
+                                              <ul class="items">
+                                                <li class="item" >
+                                                    <div class="flexbox-column-cont"  id="obj"> 
+                                                    <p>Main Page</p> 
+                                                    </div>
+                                                    
+                                                    
+                                                   
+    
+
+                                                    
+
+                                                </li>
+                                                <li class="item"><div class="flexbox-column-cont" id="obj"> 
+                                                  <p>Main Page</p>        
+                                              </div></li>
+                                                <li class="item" ><div class="flexbox-column-cont" id="obj"> 
+                                                  <p>Main Page</p>        
+                                              </div></li>
+                                              </ul>
+                                            </div>
+                                            <button onclick="next()">&raquo;</button>
+                                        </div>
+
                                 </div>
-                    </div>
+                         
+                        
+                   
                     
                 </div>
-
+                </section>
+                <section >
+                <div class="flexbox-container" id="page2"></div>
+                </section>
 
 
 
                    
-                </div>
             </div>
+        </div>
             
             <div class="footer"></div>
-        </div>
+            
+
+            
+            
+
+
     </body>
 
+    <script>
+var d = document;
+var wrap = d.querySelector('.wrap');
+var items = d.querySelector('.items');
+var itemCount = d.querySelectorAll('.item').length;
+var scroller = d.querySelector('.scroller');
+var pos = 0;
+var transform = Modernizr.prefixed('transform');
 
+function setTransform() {
+    console.log( "set")
+  items.style[transform] = 'translate3d(' + (-pos * items.offsetWidth) + 'px,0,0)';
+}
+
+function prev() {
+    console.log( "prev")
+  pos = Math.max(pos - 1, 0);
+  setTransform();
+}
+
+function next() {
+    console.log( "next")
+  pos = Math.min(pos + 1, itemCount - 1);
+  setTransform();
+}
+
+window.addEventListener('resize', setTransform);
+
+
+    </script>
+
+
+
+    <script>const gra = function(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    
+    const gri = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    const init = function(){
+        let items = document.querySelectorAll('section');
+        for (let i = 0; i < items.length; i++){
+            items[i].style.minHeight = gra(20,30) + 'vh';
+            items[i].style.background = randomColor({luminosity: 'light'});
+        }
+        
+        cssScrollSnapPolyfill()
+    }
+    init();</script>
+
+
+<script>// When the user scrolls the page, execute myFunction
+    window.onscroll = function() {myFunction()};
+    
+    // Get the navbar
+    var navigation = document.getElementById("navigatio");
+    
+    // Get the offset position of the navbar
+    var sticky = navigation.offsetTop;
+    
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navigation.classList.add("sticky")
+      } else {
+        navigation.classList.remove("sticky");
+      }
+    }</script>
 
 </html>
